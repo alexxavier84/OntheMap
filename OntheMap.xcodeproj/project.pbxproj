@@ -25,6 +25,7 @@
 		180D3F2120CAF09500B9381E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D3F2020CAF09500B9381E /* ParseClient.swift */; };
 		180D3F2320CAF0C400B9381E /* ParseConveniance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D3F2220CAF0C400B9381E /* ParseConveniance.swift */; };
 		180D3F2520CAF2C400B9381E /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D3F2420CAF2C400B9381E /* Student.swift */; };
+		180D3F2820CF5B5600B9381E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180D3F2720CF5B5600B9381E /* MapKit.framework */; };
 		18C1A0F61FF16F290050B2BF /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1A0F51FF16F290050B2BF /* UdacityClient.swift */; };
 		18C1A0F81FF16F4A0050B2BF /* UdacityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1A0F71FF16F4A0050B2BF /* UdacityConfig.swift */; };
 		18C1A0FA1FFA0B0C0050B2BF /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1A0F91FFA0B0C0050B2BF /* UdacityConstants.swift */; };
@@ -51,6 +52,7 @@
 		180D3F2020CAF09500B9381E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		180D3F2220CAF0C400B9381E /* ParseConveniance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConveniance.swift; sourceTree = "<group>"; };
 		180D3F2420CAF2C400B9381E /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		180D3F2720CF5B5600B9381E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		18C1A0F51FF16F290050B2BF /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		18C1A0F71FF16F4A0050B2BF /* UdacityConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConfig.swift; sourceTree = "<group>"; };
 		18C1A0F91FFA0B0C0050B2BF /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180D3F2820CF5B5600B9381E /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +75,7 @@
 			children = (
 				1804AE561FE5921D0060C945 /* OntheMap */,
 				1804AE551FE5921D0060C945 /* Products */,
+				180D3F2620CF5B5600B9381E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +147,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		180D3F2620CF5B5600B9381E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				180D3F2720CF5B5600B9381E /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		18C1A0F21FE828010050B2BF /* Clients */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +221,11 @@
 					1804AE531FE5921D0060C945 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

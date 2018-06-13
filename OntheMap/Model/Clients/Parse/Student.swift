@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MapKit
 
-class Student {
+@objc class Student : NSObject {
     
     let objectId: String?
     let uniqueKey: String?
@@ -20,6 +21,7 @@ class Student {
     let longitude: Double?
     let createdAt: Date?
     let updatedAt: Date?
+    let coordinate: CLLocationCoordinate2D
     
     
     init(_ dictionary: [String: AnyObject]) {
@@ -33,6 +35,12 @@ class Student {
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as? Double
         createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as? Date
         updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as? Date
+        if let latitude = latitude, let longitude = longitude {
+            coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }else{
+            coordinate = CLLocationCoordinate2D()
+        }
+        
     }
     
     static func studentsFromResult(_ result: [[String: AnyObject]]) -> [Student]{
@@ -43,7 +51,11 @@ class Student {
             students.append(Student(student))
         }
         
-        return students
+        return students as [Student]
     }
+    
+}
+
+extension Student : MKAnnotation{
     
 }

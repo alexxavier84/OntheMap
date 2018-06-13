@@ -188,6 +188,9 @@
                         <viewLayoutGuide key="safeArea" id="fN3-Fn-mll"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-selected" landscapeImage="icon_mapview-selected" largeContentSizeImage="icon_listview-selected" id="pc2-IM-qw1"/>
+                    <connections>
+                        <outlet property="mapView" destination="VlR-rz-crK" id="K6R-UE-rEV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKp-I7-9lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
