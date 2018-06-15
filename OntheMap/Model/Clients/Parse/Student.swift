@@ -25,8 +25,8 @@ import MapKit
     let updatedAt: Date?
     let coordinate: CLLocationCoordinate2D
     
-    init(_ uniqueKey: String?, _ firstName: String?, _ lastName: String?, _ mapString: String?, _ mediaUrl: String?, _ latitude: Double?, _ longitude: Double?) {
-        self.objectId = nil
+    init(_ objectId: String?, _ uniqueKey: String?, _ firstName: String?, _ lastName: String?, _ mapString: String?, _ mediaUrl: String?, _ latitude: Double?, _ longitude: Double?) {
+        self.objectId = objectId
         self.uniqueKey = uniqueKey
         self.firstName = firstName
         self.lastName = lastName

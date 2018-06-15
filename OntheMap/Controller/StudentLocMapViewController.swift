@@ -12,6 +12,7 @@ import MapKit
 class StudentLocMapViewController: UIViewController {
 
     var students : [Student] = [Student]()
+    var objectId: String?
 
     
     @IBOutlet weak var mapView: MKMapView!
@@ -47,21 +48,34 @@ class StudentLocMapViewController: UIViewController {
     
     @IBAction func addLocationInMap(_ sender: Any) {
         
-        
-        
-        let overwriteAction = UIAlertAction(title: "Overwrite", style: .default) { (action) in
-            
-            self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
+        ParseClient.sharedInstance().getStudentDetails { (students, error) in
+            if let students = students {
+                if students.count > 0 {
+                    self.objectId = students[0].objectId
+                    performUIUpdateOnMain {
+                        let overwriteAction = UIAlertAction(title: "Overwrite", style: .default) { (action) in
+                            
+                            self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
+                        }
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                            
+                        }
+                        
+                        let alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite your current location?", preferredStyle: .alert)
+                        alert.addAction(overwriteAction)
+                        alert.addAction(cancelAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }else{
+                    performUIUpdateOnMain {
+                        self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
+                    }
+                }
+            }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            
-        }
         
-        let alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite your current location?", preferredStyle: .alert)
-        alert.addAction(overwriteAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func unwindToStudentLocMap(_ sender: Any){
@@ -70,15 +84,20 @@ class StudentLocMapViewController: UIViewController {
     
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "AddLocationSegue"{
+            if let studentOverwriteLocViewController = segue.destination as? StudentOverwriteLocViewController{
+                studentOverwriteLocViewController.objectId = self.objectId ?? nil
+            }
+        }
     }
-    */
+ 
 
 }
 

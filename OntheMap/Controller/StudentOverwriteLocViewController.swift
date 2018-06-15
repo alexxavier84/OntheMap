@@ -11,6 +11,7 @@ import UIKit
 class StudentOverwriteLocViewController: UIViewController {
 
     var geocoding: Geocoding?
+    var objectId: String?
     
     @IBOutlet weak var locationAddress: UITextField!
     
@@ -57,6 +58,7 @@ class StudentOverwriteLocViewController: UIViewController {
         if segue.identifier == "confirmAddedLocationSegue"{
             if let studentOverwriteLocOnMapViewController = segue.destination as? StudentOverwriteLocOnMapViewController{
                 studentOverwriteLocOnMapViewController.geocoding = self.geocoding
+                studentOverwriteLocOnMapViewController.objectId = self.objectId ?? nil
             }
         }
     }

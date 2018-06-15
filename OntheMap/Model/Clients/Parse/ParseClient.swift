@@ -110,7 +110,54 @@ class ParseClient: NSObject {
     }
     
     
-    
+    func taskForPUTMethod(_ objectId: String, parameters: [String: AnyObject], jsonBody: String, completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionTask {
+        
+        /* 1. Set the parameters */
+        
+        /* 2/3. Build the URL, Configure the request */
+        let request = NSMutableURLRequest(url: parseURLFromParameters(parameters, withPathExtension: substituteKeyInMethod(ParseClient.Methods.StudentLocationWithObjectId, key: ParseClient.UrlKeys.ObjectId, value: objectId)))
+        request.httpMethod = "PUT"
+        request.addValue(ParseClient.ServiceKeys.ApplicationId, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseClient.ServiceKeys.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonBody.data(using: .utf8)
+        
+        /* 4. Make the request */
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            func sendError(_ error: String) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForPUT(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            guard error == nil else {
+                sendError("There was an error with your request: \(error!)")
+                return
+            }
+            
+            guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
+                sendError("Your request returned a status code other than 2xx!")
+                print((response as! HTTPURLResponse).allHeaderFields)
+                return
+            }
+            
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPUT)
+            
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+        
+    }
     
     
     //MARK : Helpers

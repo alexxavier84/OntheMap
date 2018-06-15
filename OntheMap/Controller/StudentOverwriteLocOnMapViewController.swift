@@ -12,6 +12,7 @@ import MapKit
 class StudentOverwriteLocOnMapViewController: UIViewController {
 
     var geocoding: Geocoding?
+    var objectId: String?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mediaUrl: UITextField!
@@ -37,28 +38,50 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
     
     @IBAction func onSubmitPress(_ sender: Any) {
         
+        let studentMediaUrl = self.mediaUrl.text
+        
         //Get user delatils using userid
         UdacityClient.sharedInstance().loadUserDetails(userId: UdacityClient.sharedInstance().userId!) { (udacityUser, error) in
             
-            var student = Student(UdacityClient.sharedInstance().userId, udacityUser?.firstName, udacityUser?.lastName, self.geocoding?.formattedAddress, self.mediaUrl.text, self.geocoding?.coordinate.latitude, self.geocoding?.coordinate.longitude)
+            var student = Student(self.objectId ?? nil, UdacityClient.sharedInstance().userId, udacityUser?.firstName, udacityUser?.lastName, self.geocoding?.formattedAddress, studentMediaUrl, self.geocoding?.coordinate.latitude, self.geocoding?.coordinate.longitude)
+            
+            if self.objectId == nil{
+                ParseClient.sharedInstance().addStudentLocation(student: student, completionHandlerToAddStudent: { (status, error) in
+                    
+                    guard error == nil else {
+                        print("Error posting student data")
+                        return
+                    }
+                    
+                    if status == 1 {
+                        print("Success")
+                        
+                        performUIUpdateOnMain {
+                            self.performSegue(withIdentifier: "unwindToStudentLocMap", sender: nil)
+                        }
+                    }
+                    
+                })
+            }else{
+                ParseClient.sharedInstance().updateStudentLocation(student: student, completionHandlerToUpdateStudent: { (status, error) in
+                    
+                    guard error == nil else {
+                        print("Error posting student data")
+                        return
+                    }
+                    
+                    if status == 1 {
+                        print("Success")
+                        
+                        performUIUpdateOnMain {
+                            self.performSegue(withIdentifier: "unwindToStudentLocMap", sender: nil)
+                        }
+                    }
+                })
+            }
             
             //post the location coordinates with other user details to parse
-            ParseClient.sharedInstance().addStudentLocation(student: student, completionHandlerToAddStudent: { (status, error) in
-                
-                guard error == nil else {
-                    print("Error posting student data")
-                    return
-                }
-                
-                if status == 1 {
-                    print("Success")
-                    
-                    performUIUpdateOnMain {
-                        self.performSegue(withIdentifier: "unwindToStudentLocMap", sender: nil)
-                    }
-                }
-                
-            })
+            
             
             
         }
