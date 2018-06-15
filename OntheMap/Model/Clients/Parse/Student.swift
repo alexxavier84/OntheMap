@@ -15,6 +15,8 @@ import MapKit
     let uniqueKey: String?
     let firstName: String?
     let lastName: String?
+    let title: String?
+    let subtitle: String?
     let mapString: String?
     let mediaURL: String?
     let latitude: Double?
@@ -35,6 +37,8 @@ import MapKit
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as? Double
         createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as? Date
         updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as? Date
+        title = "\(firstName ?? "") \(lastName ?? "")"
+        subtitle = mediaURL
         if let latitude = latitude, let longitude = longitude {
             coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }else{

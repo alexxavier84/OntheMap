@@ -5,7 +5,9 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -124,12 +126,28 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentTableViewCell" id="qeH-bE-pMh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentTableViewCell" textLabel="LUd-QO-5c5" detailTextLabel="hW1-v3-K8P" style="IBUITableViewCellStyleSubtitle" id="qeH-bE-pMh">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qeH-bE-pMh" id="o6D-HV-8zQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LUd-QO-5c5">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hW1-v3-K8P">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -167,7 +185,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fi-ee-KKR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem image="icon_pin" landscapeImage="icon_pin" largeContentSizeImage="icon_pin" id="hIa-Qi-6qz"/>
+                                    <barButtonItem image="icon_pin" landscapeImage="icon_pin" largeContentSizeImage="icon_pin" id="hIa-Qi-6qz">
+                                        <connections>
+                                            <action selector="addLocationInMap:" destination="eZp-eq-XA1" id="rus-EX-RdV"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aH1-dP-VVK"/>
                                     <barButtonItem title="On The Map" width="42" style="plain" id="rU3-Yq-zzx"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="OcU-rc-PIL"/>
@@ -190,11 +212,137 @@
                     <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-selected" landscapeImage="icon_mapview-selected" largeContentSizeImage="icon_listview-selected" id="pc2-IM-qw1"/>
                     <connections>
                         <outlet property="mapView" destination="VlR-rz-crK" id="K6R-UE-rEV"/>
+                        <segue destination="lyB-6i-JRt" kind="show" identifier="AddLocationSegue" id="kl1-sW-NAD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKp-I7-9lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861.5999999999999" y="-198.35082458770617"/>
+        </scene>
+        <!--Student Overwrite Loc View Controller-->
+        <scene sceneID="E24-8G-zpP">
+            <objects>
+                <viewController id="lyB-6i-JRt" customClass="StudentOverwriteLocViewController" customModule="OntheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v8F-xQ-HIL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HvG-rl-EiJ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Where are you studying today?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UwG-J5-UgT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
+                                        <color key="backgroundColor" red="0.90198111935600711" green="0.90198111935600711" blue="0.90198111935600711" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your location here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-bu-bP7">
+                                        <rect key="frame" x="0.0" y="215.5" width="375" height="216"/>
+                                        <color key="backgroundColor" red="0.48045882455209266" green="0.83362542360402792" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3n-zB-93X">
+                                        <rect key="frame" x="0.0" y="431.5" width="375" height="215.5"/>
+                                        <color key="backgroundColor" red="0.89641905341355443" green="0.8951968689296661" blue="0.91654538758704662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Find on the map">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="findOnTheMapPressed:" destination="lyB-6i-JRt" eventType="touchUpInside" id="zdQ-ZG-RQq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HvG-rl-EiJ" firstAttribute="top" secondItem="HZs-6O-aYg" secondAttribute="top" id="1nK-go-L13"/>
+                            <constraint firstItem="HZs-6O-aYg" firstAttribute="bottom" secondItem="HvG-rl-EiJ" secondAttribute="bottom" id="4pK-Yb-aGQ"/>
+                            <constraint firstAttribute="trailing" secondItem="HvG-rl-EiJ" secondAttribute="trailing" id="gCF-nQ-oPl"/>
+                            <constraint firstItem="HvG-rl-EiJ" firstAttribute="leading" secondItem="HZs-6O-aYg" secondAttribute="leading" id="pEE-DZ-vbR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HZs-6O-aYg"/>
+                    </view>
+                    <connections>
+                        <outlet property="locationAddress" destination="YV4-bu-bP7" id="XpB-HD-rOl"/>
+                        <segue destination="hrG-zb-Nnq" kind="show" identifier="confirmAddedLocationSegue" id="jlX-Oz-xFb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7hr-Vy-jI6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2644" y="-203"/>
+        </scene>
+        <!--Student Overwrite Loc On Map View Controller-->
+        <scene sceneID="p4u-sK-8qO">
+            <objects>
+                <viewController id="hrG-zb-Nnq" customClass="StudentOverwriteLocOnMapViewController" customModule="OntheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hsJ-XQ-syo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a link to share here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zSE-AO-nBk">
+                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
+                                <color key="backgroundColor" red="0.19919280634368097" green="0.89922648451147891" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Rbd-QW-aEB"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2vd-VS-bxK">
+                                <rect key="frame" x="0.0" y="134" width="375" height="533"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T34-5l-wqb">
+                                <rect key="frame" x="285" y="20" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="wwY-8o-zsK"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCancelPress:" destination="hrG-zb-Nnq" eventType="touchUpInside" id="nvL-8J-6YT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1Q-C4-fd2">
+                                <rect key="frame" x="100" y="537" width="175" height="30"/>
+                                <color key="backgroundColor" red="0.89641905340000005" green="0.89519686890000005" blue="0.91654538760000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSubmitPress:" destination="hrG-zb-Nnq" eventType="touchUpInside" id="FyH-1B-2oh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T34-5l-wqb" firstAttribute="top" secondItem="hsJ-XQ-syo" secondAttribute="top" constant="20" id="5Zz-GL-cWI"/>
+                            <constraint firstItem="nj2-IJ-rnQ" firstAttribute="trailing" secondItem="a1Q-C4-fd2" secondAttribute="trailing" constant="100" id="HxA-7a-ZcV"/>
+                            <constraint firstItem="nj2-IJ-rnQ" firstAttribute="trailing" secondItem="T34-5l-wqb" secondAttribute="trailing" constant="10" id="MhE-Yr-KiL"/>
+                            <constraint firstItem="a1Q-C4-fd2" firstAttribute="leading" secondItem="nj2-IJ-rnQ" secondAttribute="leading" constant="100" id="NZn-7W-vng"/>
+                            <constraint firstItem="2vd-VS-bxK" firstAttribute="trailing" secondItem="nj2-IJ-rnQ" secondAttribute="trailing" id="anC-GN-3IE"/>
+                            <constraint firstItem="nj2-IJ-rnQ" firstAttribute="bottom" secondItem="2vd-VS-bxK" secondAttribute="bottom" id="eo4-Fx-KK3"/>
+                            <constraint firstItem="zSE-AO-nBk" firstAttribute="top" secondItem="nj2-IJ-rnQ" secondAttribute="top" id="gFV-UW-nDa"/>
+                            <constraint firstItem="zSE-AO-nBk" firstAttribute="leading" secondItem="nj2-IJ-rnQ" secondAttribute="leading" id="r9f-A0-C8b"/>
+                            <constraint firstItem="2vd-VS-bxK" firstAttribute="leading" secondItem="nj2-IJ-rnQ" secondAttribute="leading" id="rv5-W0-wGz"/>
+                            <constraint firstItem="zSE-AO-nBk" firstAttribute="trailing" secondItem="nj2-IJ-rnQ" secondAttribute="trailing" id="tjt-U1-daM"/>
+                            <constraint firstItem="2vd-VS-bxK" firstAttribute="firstBaseline" secondItem="zSE-AO-nBk" secondAttribute="baseline" constant="10" symbolType="layoutAnchor" id="uWG-Zg-Ken"/>
+                            <constraint firstItem="nj2-IJ-rnQ" firstAttribute="bottom" secondItem="a1Q-C4-fd2" secondAttribute="bottom" constant="100" id="x81-4k-rWu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nj2-IJ-rnQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="2vd-VS-bxK" id="MMS-6x-KkP"/>
+                        <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToOverwriteLoc" unwindAction="unwindToOverwriteLocWithSegue:" id="5qs-Fk-V81"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwv-DJ-X5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qjC-qK-sak" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3415" y="-201"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Fff-IR-c45">

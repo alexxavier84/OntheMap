@@ -1,4 +1,4 @@
-//
+ //
 //  StudentOverwriteLocOnMapViewController.swift
 //  OntheMap
 //
@@ -7,29 +7,63 @@
 //
 
 import UIKit
+import MapKit
 
 class StudentOverwriteLocOnMapViewController: UIViewController {
 
+    var geocoding: Geocoding?
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print("From confirmAddedLocationSegue \(geocoding?.coordinates.latitude)")
 
         // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
+        mapView.mapType = .standard
+        mapView.showsUserLocation = true
+        mapView.showsScale = true
+        mapView.showsCompass = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        
+        performUIUpdateOnMain {
+            self.addAnnotation()
+        }
+    }
+    
+    @IBAction func onSubmitPress(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func onCancelPress(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToOverwriteLoc", sender: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+ 
+ extension StudentOverwriteLocOnMapViewController : MKMapViewDelegate{
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation{
+            return nil
+        }else{
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as? MKPinAnnotationView ?? MKPinAnnotationView()
+            annotationView.pinTintColor = UIColor.red
+            
+            return annotationView
+        }
+    }
+ }
+ 
+ extension StudentOverwriteLocOnMapViewController{
+    
+    func addAnnotation() {
+        self.mapView.delegate = self
+        self.mapView.addAnnotation(self.geocoding as! MKAnnotation)
+    }
+ }

@@ -45,6 +45,23 @@ class StudentLocMapViewController: UIViewController {
         }
     }
     
+    @IBAction func addLocationInMap(_ sender: Any) {
+        
+        let overwriteAction = UIAlertAction(title: "Overwrite", style: .default) { (action) in
+            
+            self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+            
+        }
+        
+        let alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite your current location?", preferredStyle: .alert)
+        alert.addAction(overwriteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
 
@@ -65,8 +82,11 @@ extension StudentLocMapViewController : MKMapViewDelegate {
         if annotation is MKUserLocation{
             return nil
         }else{
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.image = UIImage(named: "icon_pin")
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as? MKPinAnnotationView ?? MKPinAnnotationView()
+            annotationView.pinTintColor = UIColor.red
+            
+            annotationView.canShowCallout = true
+            
             return annotationView
         }
     }

@@ -69,6 +69,8 @@ extension StudentTableViewController : UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         cell?.textLabel?.text = "\(student.firstName ?? "None") \(student.lastName ?? "")"
+        cell?.detailTextLabel?.text = "\(student.mediaURL ?? "")"
+        cell?.imageView?.image = UIImage(named: "icon_pin")
         
         return cell!
     }
