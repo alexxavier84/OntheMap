@@ -29,6 +29,7 @@ class StudentLocMapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.showsScale = true
         mapView.showsCompass = true
+        mapView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +114,14 @@ extension StudentLocMapViewController : MKMapViewDelegate {
             
             return annotationView
         }
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        //var options = [String: Any]()
+        //UIApplication.shared.open(URL(string: view.annotation!.subtitle as! String)!, options: options) { (status) in
+            
+       // }
     }
 }
 

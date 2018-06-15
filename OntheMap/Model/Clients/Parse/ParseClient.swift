@@ -96,10 +96,8 @@ class ParseClient: NSObject {
                 sendError("No data was returned by the request!")
                 return
             }
-            let range = Range(5..<data.count)
-            let newData = data.subdata(in: range)
             
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
             
         }
         

@@ -78,5 +78,13 @@ extension StudentTableViewController : UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = self.students[(indexPath as NSIndexPath).row]
+        var options = [String: Any]()
+        UIApplication.shared.open(URL(string: student.mediaURL!)!, options: options) { (status) in
+            
+        }
+    }
 }
 
