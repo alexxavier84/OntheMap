@@ -47,6 +47,8 @@ class StudentLocMapViewController: UIViewController {
     
     @IBAction func addLocationInMap(_ sender: Any) {
         
+        
+        
         let overwriteAction = UIAlertAction(title: "Overwrite", style: .default) { (action) in
             
             self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
@@ -54,13 +56,16 @@ class StudentLocMapViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
-            
         }
         
         let alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite your current location?", preferredStyle: .alert)
         alert.addAction(overwriteAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToStudentLocMap(_ sender: Any){
+        
     }
     
     

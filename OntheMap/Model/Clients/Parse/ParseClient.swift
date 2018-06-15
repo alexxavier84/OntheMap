@@ -88,6 +88,7 @@ class ParseClient: NSObject {
             
             guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
                 sendError("Your request returned a status code other than 2xx!")
+                print((response as! HTTPURLResponse).allHeaderFields)
                 return
             }
             

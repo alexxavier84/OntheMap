@@ -336,7 +336,9 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="2vd-VS-bxK" id="MMS-6x-KkP"/>
+                        <outlet property="mediaUrl" destination="zSE-AO-nBk" id="WNy-e4-ybM"/>
                         <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToOverwriteLoc" unwindAction="unwindToOverwriteLocWithSegue:" id="5qs-Fk-V81"/>
+                        <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToStudentLocMap" unwindAction="unwindToOverwriteLocWithSegue:" id="h7l-0n-krf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwv-DJ-X5q" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -25,6 +25,25 @@ import MapKit
     let updatedAt: Date?
     let coordinate: CLLocationCoordinate2D
     
+    init(_ uniqueKey: String?, _ firstName: String?, _ lastName: String?, _ mapString: String?, _ mediaUrl: String?, _ latitude: Double?, _ longitude: Double?) {
+        self.objectId = nil
+        self.uniqueKey = uniqueKey
+        self.firstName = firstName
+        self.lastName = lastName
+        self.mapString = mapString
+        self.mediaURL = mediaUrl
+        self.latitude = latitude
+        self.longitude = longitude
+        self.title = nil
+        self.subtitle = nil
+        self.createdAt = nil
+        self.updatedAt = nil
+        if let latitude = latitude, let longitude = longitude {
+            self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }else{
+            self.coordinate = CLLocationCoordinate2D()
+        }
+    }
     
     init(_ dictionary: [String: AnyObject]) {
         objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as? String
