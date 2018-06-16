@@ -24,7 +24,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
         // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
         mapView.mapType = .standard
-        mapView.showsUserLocation = true
+        //mapView.showsUserLocation = true
         mapView.showsScale = true
         mapView.showsCompass = true
     }
@@ -138,6 +138,11 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
     
     func addAnnotation() {
         self.mapView.delegate = self
+        
+        let regionRadius: CLLocationDistance = 10000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance((self.geocoding?.coordinate)!,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
         self.mapView.addAnnotation(self.geocoding as! MKAnnotation)
     }
  }

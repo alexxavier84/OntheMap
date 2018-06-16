@@ -156,7 +156,10 @@ class UdacityClient: NSObject{
                 return
             }
             
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForDELETE)
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range)
+            
+            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForDELETE)
         }
         
         task.resume()
