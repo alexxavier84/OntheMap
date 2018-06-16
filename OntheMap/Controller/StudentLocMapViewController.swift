@@ -122,6 +122,12 @@ extension StudentLocMapViewController : MKMapViewDelegate {
         //UIApplication.shared.open(URL(string: view.annotation!.subtitle as! String)!, options: options) { (status) in
             
        // }
+        var options = [String: Any]()
+        if let mediaUrl = view.annotation!.subtitle, mediaUrl != "" {
+            UIApplication.shared.open(URL(string: mediaUrl!)!, options: options) { (status) in
+                
+            }
+        }
     }
 }
 

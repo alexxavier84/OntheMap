@@ -12,10 +12,13 @@ extension ParseClient
 {
     func getStudentsLocationList(completionHandlerForStudentsList: @escaping (_ students : [Student]?, _ error: NSError?) -> Void) {
         
-        let parameters = [String: AnyObject]()
+        let parameters = [
+            "limit": "100",
+            "order": "-updatedAt"
+        ]
         let method = ParseClient.Methods.StudentLocation
         
-        self.taskForGETMethod(method, parameters: parameters) { (result, error) in
+        self.taskForGETMethod(method, parameters: parameters as [String : AnyObject]) { (result, error) in
             guard error == nil else {
                 completionHandlerForStudentsList(nil, error)
                 return

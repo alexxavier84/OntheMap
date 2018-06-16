@@ -110,6 +110,10 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
         performSegue(withIdentifier: "unwindToOverwriteLoc", sender: nil)
     }
     
+    
+    @IBAction func onLogoutPress(_ sender: Any) {
+    }
+    
 
 }
  
