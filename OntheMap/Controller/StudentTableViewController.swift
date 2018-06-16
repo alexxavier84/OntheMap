@@ -82,9 +82,12 @@ extension StudentTableViewController : UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = self.students[(indexPath as NSIndexPath).row]
         var options = [String: Any]()
-        UIApplication.shared.open(URL(string: student.mediaURL!)!, options: options) { (status) in
-            
+        if let mediaUrl = student.mediaURL, mediaUrl != "" {
+            UIApplication.shared.open(URL(string: mediaUrl)!, options: options) { (status) in
+                
+            }
         }
+        
     }
 }
 

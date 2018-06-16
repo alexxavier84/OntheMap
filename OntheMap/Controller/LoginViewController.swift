@@ -42,6 +42,25 @@ class LoginViewController: UIViewController {
             
             performUIUpdateOnMain {
                 
+                func showErrorMessage(_ errorMessage: String) {
+                    performUIUpdateOnMain {
+                        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                        }
+                        
+                        let alert = UIAlertController(title: "", message: errorMessage, preferredStyle: .alert)
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
+                if let error = error, error != "nil" {
+                    performUIUpdateOnMain {
+                        showErrorMessage(error)
+                    }
+                    return
+                }
+                
+                
                 if let user = user {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "OnthemapTabbarController") as! UITabBarController
                     

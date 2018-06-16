@@ -48,8 +48,19 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
             if self.objectId == nil{
                 ParseClient.sharedInstance().addStudentLocation(student: student, completionHandlerToAddStudent: { (status, error) in
                     
+                    func showErrorMessage(_ errorMessage: String) {
+                        performUIUpdateOnMain {
+                            let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                            }
+                            
+                            let alert = UIAlertController(title: "", message: errorMessage, preferredStyle: .alert)
+                            alert.addAction(okAction)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                    
                     guard error == nil else {
-                        print("Error posting student data")
+                        showErrorMessage("Error posting student data")
                         return
                     }
                     
@@ -65,8 +76,19 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
             }else{
                 ParseClient.sharedInstance().updateStudentLocation(student: student, completionHandlerToUpdateStudent: { (status, error) in
                     
+                    func showErrorMessage(_ errorMessage: String) {
+                        performUIUpdateOnMain {
+                            let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                            }
+                            
+                            let alert = UIAlertController(title: "", message: errorMessage, preferredStyle: .alert)
+                            alert.addAction(okAction)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                    
                     guard error == nil else {
-                        print("Error posting student data")
+                        showErrorMessage("Error posting student data")
                         return
                     }
                     
@@ -81,12 +103,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
             }
             
             //post the location coordinates with other user details to parse
-            
-            
-            
         }
-        
-        
     }
     
     @IBAction func onCancelPress(_ sender: Any) {
