@@ -33,8 +33,10 @@ class StudentLocMapViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
         ParseClient.sharedInstance().getStudentsLocationList { (students, error) in
-            
+            UIViewController.removeSpinner(spinner: sv)
             if let students = students {
                 self.students = students
                 performUIUpdateOnMain {

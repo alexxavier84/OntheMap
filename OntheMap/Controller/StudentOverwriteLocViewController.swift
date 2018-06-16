@@ -30,8 +30,10 @@ class StudentOverwriteLocViewController: UIViewController {
     @IBAction func findOnTheMapPressed(_ sender: Any) {
         
         if let address = locationAddress.text {
+            let sv = UIViewController.displaySpinner(onView: self.view)
             GeocodingManager().forwardGeocoding(address: address, completionHandlerForGeocoding: { (geocoding, error) in
                 
+                UIViewController.removeSpinner(spinner: sv)
                 if let geocoding = geocoding {
                     self.geocoding = geocoding
                     performUIUpdateOnMain {

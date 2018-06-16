@@ -40,6 +40,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
         
         let studentMediaUrl = self.mediaUrl.text
         
+        let sv = UIViewController.displaySpinner(onView: self.view)
         //Get user delatils using userid
         UdacityClient.sharedInstance().loadUserDetails(userId: UdacityClient.sharedInstance().userId!) { (udacityUser, error) in
             
@@ -48,6 +49,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
             if self.objectId == nil{
                 ParseClient.sharedInstance().addStudentLocation(student: student, completionHandlerToAddStudent: { (status, error) in
                     
+                    UIViewController.removeSpinner(spinner: sv)
                     func showErrorMessage(_ errorMessage: String) {
                         performUIUpdateOnMain {
                             let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
@@ -76,6 +78,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
             }else{
                 ParseClient.sharedInstance().updateStudentLocation(student: student, completionHandlerToUpdateStudent: { (status, error) in
                     
+                    UIViewController.removeSpinner(spinner: sv)
                     func showErrorMessage(_ errorMessage: String) {
                         performUIUpdateOnMain {
                             let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in

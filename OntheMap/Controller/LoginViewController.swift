@@ -38,10 +38,11 @@ class LoginViewController: UIViewController {
     */
     @IBAction func loginPressed(_ sender: Any) {
         
+        let sv = UIViewController.displaySpinner(onView: self.view)
         UdacityClient.sharedInstance().authenticationWithViewController(username: userName.text!, password: password.text!) { (user, error) in
             
+            UIViewController.removeSpinner(spinner: sv)
             performUIUpdateOnMain {
-                
                 func showErrorMessage(_ errorMessage: String) {
                     performUIUpdateOnMain {
                         let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
