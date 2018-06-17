@@ -36,6 +36,11 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
     @IBAction func onSubmitPress(_ sender: Any) {
         
         let studentMediaUrl = self.mediaUrl.text

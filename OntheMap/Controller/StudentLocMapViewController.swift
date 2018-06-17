@@ -111,7 +111,7 @@ extension StudentLocMapViewController : MKMapViewDelegate {
         }else{
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as? MKPinAnnotationView ?? MKPinAnnotationView()
             annotationView.pinTintColor = UIColor.red
-            
+            annotationView.rightCalloutAccessoryView = UIButton(type: .infoLight)
             annotationView.canShowCallout = true
             
             return annotationView
@@ -119,11 +119,9 @@ extension StudentLocMapViewController : MKMapViewDelegate {
     }
     
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //var options = [String: Any]()
-        //UIApplication.shared.open(URL(string: view.annotation!.subtitle as! String)!, options: options) { (status) in
-            
-       // }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         var options = [String: Any]()
         if let mediaUrl = view.annotation!.subtitle, mediaUrl != "" {
             UIApplication.shared.open(URL(string: mediaUrl!)!, options: options) { (status) in
