@@ -91,4 +91,23 @@ extension UdacityClient{
         }
     }
     
+    func logoutUser(completionHandlerForLogoutUser: @escaping(_ logoutConfirm: [String: AnyObject]?, _ error: NSError?) -> Void) {
+        let parameters = [String: AnyObject]()
+        let method = UdacityClient.Methods.Session
+        
+        taskForDELETEMethod(method, parameters: parameters) { (result, error) in
+            guard error == nil else {
+                completionHandlerForLogoutUser(nil, error)
+                return
+            }
+            
+            guard let user = result?[UdacityClient.JSONResponseKeys.Session] as? [String: AnyObject] else{
+                completionHandlerForLogoutUser(nil, NSError(domain: "logoutUser", code: 0, userInfo: [NSLocalizedDescriptionKey : "Could not parse User json"]))
+                return
+            }
+            
+            completionHandlerForLogoutUser(user, nil)
+        }
+    }
+    
 }

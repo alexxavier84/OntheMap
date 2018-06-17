@@ -104,6 +104,7 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
                         print("Success")
                         
                         performUIUpdateOnMain {
+                            
                             self.performSegue(withIdentifier: "unwindToStudentLocMap", sender: nil)
                         }
                     }
@@ -118,9 +119,6 @@ class StudentOverwriteLocOnMapViewController: UIViewController {
         performSegue(withIdentifier: "unwindToOverwriteLoc", sender: nil)
     }
     
-    
-    @IBAction func onLogoutPress(_ sender: Any) {
-    }
     
 
 }

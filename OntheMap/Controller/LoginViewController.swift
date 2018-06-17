@@ -64,6 +64,13 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func unwindToLoginView(segue: UIStoryboardSegue){
+        
+        self.userName.text = ""
+        self.password.text = ""
+        
+    }
+    
     
 }
 

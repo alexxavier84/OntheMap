@@ -171,7 +171,7 @@
                                 <items>
                                     <barButtonItem title="Logout" id="ihD-Ja-aSQ">
                                         <connections>
-                                            <action selector="onLogoutPress:" destination="in0-dl-y5s" id="Lzi-Ao-h5v"/>
+                                            <action selector="onLogoutPress:" destination="eZp-eq-XA1" id="nDr-jE-0N4"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aH1-dP-VVK"/>
@@ -182,7 +182,11 @@
                                             <action selector="addLocationInMap:" destination="eZp-eq-XA1" id="rus-EX-RdV"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="icon_refresh" landscapeImage="icon_refresh" largeContentSizeImage="icon_refresh" id="UTN-Mt-vyR"/>
+                                    <barButtonItem image="icon_refresh" landscapeImage="icon_refresh" largeContentSizeImage="icon_refresh" id="UTN-Mt-vyR">
+                                        <connections>
+                                            <action selector="onRefreshPressed:" destination="eZp-eq-XA1" id="K84-4Z-EUG"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -202,6 +206,7 @@
                     <connections>
                         <outlet property="mapView" destination="VlR-rz-crK" id="K6R-UE-rEV"/>
                         <segue destination="lyB-6i-JRt" kind="show" identifier="AddLocationSegue" id="kl1-sW-NAD"/>
+                        <segue destination="in0-dl-y5s" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginViewWithSegue:" id="AXN-aV-d65"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKp-I7-9lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -335,7 +340,7 @@
                         <outlet property="mapView" destination="2vd-VS-bxK" id="MMS-6x-KkP"/>
                         <outlet property="mediaUrl" destination="zSE-AO-nBk" id="WNy-e4-ybM"/>
                         <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToOverwriteLoc" unwindAction="unwindToOverwriteLocWithSegue:" id="5qs-Fk-V81"/>
-                        <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToStudentLocMap" unwindAction="unwindToOverwriteLocWithSegue:" id="h7l-0n-krf"/>
+                        <segue destination="qjC-qK-sak" kind="unwind" identifier="unwindToStudentLocMap" unwindAction="unwindToStudentLocMapWithSegue:" id="h7l-0n-krf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwv-DJ-X5q" userLabel="First Responder" sceneMemberID="firstResponder"/>

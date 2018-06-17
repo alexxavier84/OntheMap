@@ -81,7 +81,36 @@ class StudentLocMapViewController: UIViewController {
         
     }
     
-    @IBAction func unwindToStudentLocMap(_ sender: Any){
+    @IBAction func onLogoutPress(_ sender: Any) {
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        UdacityClient.sharedInstance().logoutUser { (result, error) in
+            UIViewController.removeSpinner(spinner: sv)
+            performUIUpdateOnMain {
+                self.performSegue(withIdentifier: "unwindToLogin", sender: nil)
+            }
+        }
+    }
+    
+    @IBAction func onRefreshPressed(_ sender: Any) {
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        ParseClient.sharedInstance().getStudentsLocationList { (students, error) in
+            UIViewController.removeSpinner(spinner: sv)
+            if let students = students {
+                self.students = students
+                performUIUpdateOnMain {
+                    self.addAnnotation()
+                }
+            }else{
+                print(String(describing: error) ?? "Empty error")
+            }
+            
+        }
+    }
+    
+    
+    @IBAction func unwindToStudentLocMap(segue: UIStoryboardSegue){
         
     }
     
