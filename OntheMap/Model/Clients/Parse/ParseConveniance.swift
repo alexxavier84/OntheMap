@@ -10,7 +10,7 @@ import Foundation
 
 extension ParseClient
 {
-    func getStudentsLocationList(completionHandlerForStudentsList: @escaping (_ students : [Student]?, _ error: NSError?) -> Void) {
+    func getStudentsLocationList(completionHandlerForStudentsList: @escaping (_ error: NSError?) -> Void) {
         
         let parameters = [
             "limit": "100",
@@ -20,16 +20,17 @@ extension ParseClient
         
         self.taskForGETMethod(method, parameters: parameters as [String : AnyObject]) { (result, error) in
             guard error == nil else {
-                completionHandlerForStudentsList(nil, error)
+                completionHandlerForStudentsList(error)
                 return
             }
             
             guard let studentsLocationList = result![ParseClient.JSONResponseKeys.Results] as? [[String: AnyObject]] else {
-                completionHandlerForStudentsList(nil, NSError(domain: "getStudentsLocationList", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse StudentsLocation json"]))
+                completionHandlerForStudentsList(NSError(domain: "getStudentsLocationList", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse StudentsLocation json"]))
                 return
             }
             
-            completionHandlerForStudentsList(Student.studentsFromResult(studentsLocationList), nil)
+            SharedData.studentsFromResult(studentsLocationList)
+            completionHandlerForStudentsList(nil)
         }
     }
     

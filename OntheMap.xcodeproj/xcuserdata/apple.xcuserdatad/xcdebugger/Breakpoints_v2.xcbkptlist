@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OntheMap/Model/Clients/Parse/ParseConveniance.swift"
-            timestampString = "551097932.462406"
+            timestampString = "551126194.885293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "addStudentLocation(student:completionHandlerToAddStudent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OntheMap/Model/Clients/Parse/ParseClient.swift"
-            timestampString = "551097932.462481"
+            timestampString = "551126194.885377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OntheMap/Model/Clients/Parse/ParseConveniance.swift"
-            timestampString = "551097932.462556"
+            timestampString = "551126194.88544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "addStudentLocation(student:completionHandlerToAddStudent:)"
             landmarkType = "7">
          </BreakpointContent>

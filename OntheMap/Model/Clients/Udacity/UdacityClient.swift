@@ -181,9 +181,9 @@ class UdacityClient: NSObject{
             }
             
             guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
-                //sendError("Your request returned a status code other than 2xx!")
-                sendError(error as! NSError)
-                //print((response as! HTTPURLResponse).allHeaderFields)
+                let userInfo = [NSLocalizedDescriptionKey : "Your request returned a status code other than 2xx!"]
+                sendError(NSError(domain: "taskForDELETEMethod", code: 1, userInfo: userInfo))
+                
                 return
             }
             

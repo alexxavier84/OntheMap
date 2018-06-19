@@ -11,7 +11,6 @@ import MapKit
 
 class StudentLocMapViewController: UIViewController {
 
-    var students : [Student] = [Student]()
     var objectId: String?
 
     
@@ -35,15 +34,14 @@ class StudentLocMapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         let sv = UIViewController.displaySpinner(onView: self.view)
-        ParseClient.sharedInstance().getStudentsLocationList { (students, error) in
+        ParseClient.sharedInstance().getStudentsLocationList { (error) in
             UIViewController.removeSpinner(spinner: sv)
-            if let students = students {
-                self.students = students
+            if SharedData.shared.students.count > 0 {
                 performUIUpdateOnMain {
                     self.addAnnotation()
                 }
             }else{
-                print(String(describing: error) ?? "Empty error")
+                print(String(describing: error) ?? "No student record")
             }
             
         }
@@ -95,15 +93,14 @@ class StudentLocMapViewController: UIViewController {
     @IBAction func onRefreshPressed(_ sender: Any) {
         
         let sv = UIViewController.displaySpinner(onView: self.view)
-        ParseClient.sharedInstance().getStudentsLocationList { (students, error) in
+        ParseClient.sharedInstance().getStudentsLocationList { (error) in
             UIViewController.removeSpinner(spinner: sv)
-            if let students = students {
-                self.students = students
+            if SharedData.shared.students.count > 0 {
                 performUIUpdateOnMain {
                     self.addAnnotation()
                 }
             }else{
-                self.showErrorMessage(error?.localizedDescription ?? "Empty error")
+                self.showErrorMessage(error?.localizedDescription ?? "No student data")
             }
             
         }
@@ -177,7 +174,7 @@ extension StudentLocMapViewController{
     
     func addAnnotation() {
         self.mapView.delegate = self
-        self.mapView.addAnnotations(self.students as! [MKAnnotation])
+        self.mapView.addAnnotations(SharedData.shared.students as! [MKAnnotation])
     }
     
     func showErrorMessage(_ errorMessage: String) {
