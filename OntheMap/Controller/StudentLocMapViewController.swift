@@ -103,7 +103,7 @@ class StudentLocMapViewController: UIViewController {
                     self.addAnnotation()
                 }
             }else{
-                print(String(describing: error) ?? "Empty error")
+                self.showErrorMessage(error?.localizedDescription ?? "Empty error")
             }
             
         }
@@ -178,6 +178,17 @@ extension StudentLocMapViewController{
     func addAnnotation() {
         self.mapView.delegate = self
         self.mapView.addAnnotations(self.students as! [MKAnnotation])
+    }
+    
+    func showErrorMessage(_ errorMessage: String) {
+        performUIUpdateOnMain {
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            
+            let alert = UIAlertController(title: "", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }

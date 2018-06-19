@@ -30,7 +30,7 @@ extension UdacityClient{
                     completionHandlerForAuth(user, String(describing: error))
                 })
             }else{
-                completionHandlerForAuth(nil, "Invalid username or password")
+                completionHandlerForAuth(nil, error?.localizedDescription as! String)
             }
         }
         

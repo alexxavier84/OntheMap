@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.userName.delegate = self
+        self.password.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,7 +72,13 @@ class LoginViewController: UIViewController {
         self.password.text = ""
         
     }
+}
+
+extension LoginViewController : UITextFieldDelegate{
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 

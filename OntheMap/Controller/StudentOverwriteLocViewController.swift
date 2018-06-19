@@ -72,6 +72,12 @@ class StudentOverwriteLocViewController: UIViewController {
     @IBAction func unwindToOverwriteLoc(segue: UIStoryboardSegue){
         
     }
+    
+    @IBAction func onCancelPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "unwindToStudentLocMap", sender: nil)
+    }
+    
 
 }
 

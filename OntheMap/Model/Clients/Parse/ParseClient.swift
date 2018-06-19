@@ -28,25 +28,35 @@ class ParseClient: NSObject {
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            func sendError(_ error: String) {
+            /*func sendError(_ error: String) {
+             print(error)
+             let userInfo = [NSLocalizedDescriptionKey : error]
+             completionHandlerForPUT(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+             }*/
+            
+            func sendError(_ error: NSError) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForGET(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForGET(nil, error)
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             guard error == nil else {
-                sendError("There was an error with your request: \(error!)")
+                //sendError("There was an error with your request: \(error!)")
+                sendError(error as! NSError)
                 return
             }
             
             guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                //sendError("Your request returned a status code other than 2xx!")
+                sendError(error as! NSError)
+                //print((response as! HTTPURLResponse).allHeaderFields)
                 return
             }
             
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                //sendError("No data was returned by the request!")
+                sendError(error as! NSError)
                 return
             }
             
@@ -74,26 +84,35 @@ class ParseClient: NSObject {
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            func sendError(_ error: String) {
+            /*func sendError(_ error: String) {
+             print(error)
+             let userInfo = [NSLocalizedDescriptionKey : error]
+             completionHandlerForPUT(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+             }*/
+            
+            func sendError(_ error: NSError) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(nil, error)
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             guard error == nil else {
-                sendError("There was an error with your request: \(error!)")
+                //sendError("There was an error with your request: \(error!)")
+                sendError(error as! NSError)
                 return
             }
             
             guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
-                print((response as! HTTPURLResponse).allHeaderFields)
+                //sendError("Your request returned a status code other than 2xx!")
+                sendError(error as! NSError)
+                //print((response as! HTTPURLResponse).allHeaderFields)
                 return
             }
             
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                //sendError("No data was returned by the request!")
+                sendError(error as! NSError)
                 return
             }
             
@@ -123,26 +142,35 @@ class ParseClient: NSObject {
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            func sendError(_ error: String) {
+            /*func sendError(_ error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completionHandlerForPUT(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+            }*/
+ 
+            func sendError(_ error: NSError) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForPUT(nil, error)
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             guard error == nil else {
-                sendError("There was an error with your request: \(error!)")
+                //sendError("There was an error with your request: \(error!)")
+                sendError(error as! NSError)
                 return
             }
             
             guard let statusCode = (response as! HTTPURLResponse).statusCode as? Int, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
-                print((response as! HTTPURLResponse).allHeaderFields)
+                //sendError("Your request returned a status code other than 2xx!")
+                sendError(error as! NSError)
+                //print((response as! HTTPURLResponse).allHeaderFields)
                 return
             }
             
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                //sendError("No data was returned by the request!")
+                sendError(error as! NSError)
                 return
             }
             
