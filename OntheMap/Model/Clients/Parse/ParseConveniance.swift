@@ -60,7 +60,7 @@ extension ParseClient
         
         let parameters = [String: AnyObject]()
         let mutableMethod = ParseClient.Methods.StudentLocation
-        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(student.uniqueKey ?? "")\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(student.firstName ?? "")\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(student.lastName ?? "")\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(student.mapString ?? "")\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(student.mediaURL ?? "")\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(student.latitude ?? 0), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(student.longitude ?? 0)}"
+        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(student.studentInformation.uniqueKey ?? "")\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(student.studentInformation.firstName ?? "")\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(student.studentInformation.lastName ?? "")\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(student.studentInformation.mapString ?? "")\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(student.studentInformation.mediaURL ?? "")\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(student.studentInformation.latitude ?? 0), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(student.studentInformation.longitude ?? 0)}"
         print(jsonBody)
         
         taskForPOSTMethod(mutableMethod, parameters: parameters, jsonBody: jsonBody) { (result, error) in
@@ -80,10 +80,10 @@ extension ParseClient
         
         let parameters = [String: AnyObject]()
         let mutableMethod = ParseClient.Methods.StudentLocationWithObjectId
-        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(student.uniqueKey ?? "")\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(student.firstName ?? "")\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(student.lastName ?? "")\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(student.mapString ?? "")\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(student.mediaURL ?? "")\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(student.latitude ?? 0), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(student.longitude ?? 0)}"
+        let jsonBody = "{\"\(ParseClient.JSONBodyKeys.UniqueKey)\": \"\(student.studentInformation.uniqueKey ?? "")\", \"\(ParseClient.JSONBodyKeys.FirstName)\": \"\(student.studentInformation.firstName ?? "")\", \"\(ParseClient.JSONBodyKeys.LastName)\": \"\(student.studentInformation.lastName ?? "")\",\"\(ParseClient.JSONBodyKeys.MapString)\": \"\(student.studentInformation.mapString ?? "")\", \"\(ParseClient.JSONBodyKeys.MediaURL)\": \"\(student.studentInformation.mediaURL ?? "")\",\"\(ParseClient.JSONBodyKeys.Latitude)\": \(student.studentInformation.latitude ?? 0), \"\(ParseClient.JSONBodyKeys.Longitude)\": \(student.studentInformation.longitude ?? 0)}"
         print(jsonBody)
         
-        taskForPUTMethod(student.objectId!, parameters: parameters, jsonBody: jsonBody) { (result, error) in
+        taskForPUTMethod(student.studentInformation.objectId!, parameters: parameters, jsonBody: jsonBody) { (result, error) in
             
             guard error == nil else {
                 completionHandlerToUpdateStudent(0, error)

@@ -54,7 +54,7 @@ class StudentLocMapViewController: UIViewController {
         ParseClient.sharedInstance().getStudentDetails { (students, error) in
             if let students = students {
                 if students.count > 0 {
-                    self.objectId = students[0].objectId
+                    self.objectId = students[0].studentInformation.objectId
                     performUIUpdateOnMain {
                         let overwriteAction = UIAlertAction(title: "Overwrite", style: .default) { (action) in
                             

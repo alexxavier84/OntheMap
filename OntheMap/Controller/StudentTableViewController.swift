@@ -69,8 +69,8 @@ extension StudentTableViewController : UITableViewDataSource, UITableViewDelegat
         let student = self.students[(indexPath as NSIndexPath).row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
-        cell?.textLabel?.text = "\(student.firstName ?? "None") \(student.lastName ?? "")"
-        cell?.detailTextLabel?.text = "\(student.mediaURL ?? "")"
+        cell?.textLabel?.text = "\(student.studentInformation.firstName ?? "None") \(student.studentInformation.lastName ?? "")"
+        cell?.detailTextLabel?.text = "\(student.studentInformation.mediaURL ?? "")"
         cell?.imageView?.image = UIImage(named: "icon_pin")
         
         return cell!
@@ -83,7 +83,7 @@ extension StudentTableViewController : UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = self.students[(indexPath as NSIndexPath).row]
         var options = [String: Any]()
-        if let mediaUrl = student.mediaURL, mediaUrl != "" {
+        if let mediaUrl = student.studentInformation.mediaURL, mediaUrl != "" {
             UIApplication.shared.open(URL(string: mediaUrl)!, options: options) { (status) in
                 
             }
