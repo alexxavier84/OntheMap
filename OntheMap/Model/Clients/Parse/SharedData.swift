@@ -16,6 +16,8 @@ class SharedData: NSObject {
     
     static func studentsFromResult(_ result: [[String: AnyObject]]) {
         
+        SharedData.shared.students.removeAll()
+        
         for student in result {
             SharedData.shared.students.append(Student(student))
         }
